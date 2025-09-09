@@ -1,10 +1,10 @@
 function Customerfeedback({ name, feedback, image }) {
   return (
     <>
-      <div className="max-w-80 border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+      <div className="min-w-[280px] max-w-sm  border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
         {/* Content */}
         <div className="mb-3">
-          <p className="text-gray-900 text-sm leading-relaxed whitespace-pre-wrap">
+          <p className="text-gray-900 text-xl  leading-relaxed ">
             {" "}
             {feedback}{" "}
           </p>

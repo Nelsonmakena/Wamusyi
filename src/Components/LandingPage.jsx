@@ -3,8 +3,25 @@ import landingimage from "../assets/landingpage.png";
 import image1 from "../assets/Grilledmeat.png";
 import Footer from "./Footer";
 import Customerfeedback from "./Customerfeedback";
+import { FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
+import { useRef } from "react";
+import drink from "../assets/drinks.png";
+import snacks from "../assets/snacks.png";
+import dishes from "../assets/dishes.png";
 
 function Landingpage() {
+  const ScrollRef = useRef(null);
+  // scrolling right
+  const scrollLeft = () => {
+    ScrollRef.current.scrollBy({ left: -200, behavior: "smooth" });
+  };
+
+  // Scroll Right
+  const scrollRight = () => {
+    ScrollRef.current.scrollBy({ left: 200, behavior: "smooth" });
+  };
+
   return (
     <>
       <style>
@@ -24,6 +41,15 @@ function Landingpage() {
             transform-origin: center center;
             
           }
+            .no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
                     `}
       </style>
 
@@ -55,42 +81,43 @@ function Landingpage() {
           </div>
         </div>
 
-        <div class="flex flex-row w-1/2 relative">
-          <img
-            src={landingimage}
-            alt="landing image"
-            className="max-h-full max-w-full object-contain rotate overflow-hidden"
-          />
-          <div className="flex flex-col gap-1.5 items-center">
+        <div class="flex flex-row w-1/2 ">
+          <div className="">
+            <img
+              src={landingimage}
+              alt="landing image"
+              className="max-h-full max-w-full object-contain rotate overflow-hidden"
+            />
+          </div>
+          <div className="flex flex-col gap-1.5 items-center absolute right-20 top-1/2 ">
             <button
               type="button"
-              className="w-40 py-3 active:scale-95 transition text-sm text-gray-500 border border-orange-500 rounded-lg bg-transparent"
+              className="  w-40 py-3  active:scale-95 transition text-sm text-black-500 border border-orange-500 rounded-lg bg-transparent"
             >
-              <p className="mb-0.5"> Dishes</p>
+              <div className="flex flex-row gap-5">
+                <img src={dishes} alt="" className="w-7 ml-1.5" />
+                <p className="mb-0.5 "> Dishes</p>
+              </div>
             </button>
+
             <button
               type="button"
               className="w-40 py-3 active:scale-95 transition text-sm text-gray-500 border border-orange-500 rounded-lg bg-transparent"
             >
-              <p className="mb-0.5"> Dessert</p>
+              <div className="flex flex-row gap-5">
+                <img src={drink} alt="" className="w-7 ml-1.5 " />
+                <p className="mb-0.5 "> drinks</p>
+              </div>
             </button>
+
             <button
               type="button"
               className="w-40 py-3 active:scale-95 transition text-sm text-gray-500 border border-orange-500 rounded-lg bg-transparent"
             >
-              <p className="mb-0.5"> Drinks</p>
-            </button>
-            <button
-              type="button"
-              className="w-40 py-3 active:scale-95 transition text-sm text-gray-500 border border-orange-500 rounded-lg bg-transparent"
-            >
-              <p className="mb-0.5"> Platter</p>
-            </button>
-            <button
-              type="button"
-              className="w-40 py-3 active:scale-95 transition text-sm text-gray-500 border border-orange-500 rounded-lg bg-transparent"
-            >
-              <p className="mb-0.5"> Snacks</p>
+              <div className="flex flex-row gap-5">
+                <img src={snacks} alt="" className="w-7 ml-1.5" />
+                <p className="mb-0.5 "> Snacks </p>
+              </div>
             </button>
           </div>
         </div>
@@ -134,7 +161,7 @@ function Landingpage() {
           </h1>
           <div className="flex flex-col items-center justify-center">
             <p>
-              At Wamusy, we are more than just a restaurant — we are a place
+              At Wamusy, we are more than just a restaurant. We are a place
               where passion for food meets the joy of bringing people together.
               Our goal is to give you more than multiple services; we deliver a
               complete dining experience tailored to your lifestyle. From the
@@ -166,22 +193,46 @@ function Landingpage() {
         </div>
       </div>
       {/*Reservations*/}
-      <div className="flex flex-row w-full">
-        {" "}
-        <h1> Do yo have any dinner plan today? reserve your table </h1>
-        <p>
-          make online reservation, read restaurant reviews from diners and earn
-          points toward free meals. OpenTable is real-time online reservation{" "}
-        </p>
-        <button className="w-40 py-3 active:scale-95 transition text-sm text-gray-500 border border-orange-500 rounded-lg bg-transparent">
-          {" "}
-          Make Reservation
-        </button>
+      <div className="flex flex-col w-full h-dvh">
+        <div className="w-1/2">
+          <h1 className="text-5xl mb-7 font-bold p-1.5">
+            {" "}
+            Do yo have any dinner plan today? reserve your table{" "}
+          </h1>
+          <p>
+            make online reservation, read restaurant reviews from diners and
+            earn points toward free meals. OpenTable is real-time online
+            reservation{" "}
+          </p>
+          <div>
+            <button className="w-40 py-3 active:scale-95 transition text-sm text-gray-500 border border-orange-500 rounded-lg bg-transparent">
+              Make Reservation
+            </button>
+          </div>
+        </div>
       </div>
       {/*what customer says*/}
-      <div className="w-full ">
+      <div className="w-full  h-dvh">
         <h1 className="flex text-5xl mb-7 font-bold"> What Customer Says?</h1>
-        <div className="flex ">
+        <div className="flex justify-end gap-2.5">
+          <button
+            className=" flex justify-center items-center rounded-[50%]  w-16 h-16  bg-orange-500 shadow-xl"
+            onClick={scrollLeft}
+          >
+            <FaArrowLeft />
+          </button>
+          <button
+            className=" flex justify-center items-center rounded-[50%]  w-16 h-16  bg-orange-500 shadow-xl
+          "
+            onClick={scrollRight}
+          >
+            <FaArrowRight />
+          </button>
+        </div>
+        <div
+          className="flex overflow-x-scroll  mt-1.5 mb-6 gap-20 mt-3.5 no-scrollbar "
+          ref={ScrollRef}
+        >
           <Customerfeedback
             name="Nelson Ndolo"
             feedback="The food at Wamusy is absolutely delicious! I ordered the grilled chicken and it tasted just like home. The online order was smooth and delivery was super fast"
